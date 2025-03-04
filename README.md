@@ -40,3 +40,16 @@ const original = {
 const copied = deepClone(original);
 console.log(copied);
 ```
+合并数组
+```js
+a = [1, 5, 8]
+b = [3, 6, 9]
+// 1
+var c = a.concat(b)
+// 2
+for (let i in b){
+    a.push(b[i])
+}
+// 3
+a.push.apply(a,b)
+```
