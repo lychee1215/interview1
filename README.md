@@ -52,4 +52,7 @@ for (let i in b){
 }
 // 3
 a.push.apply(a,b)
+
+var d = Array.from (new Set(c))
+
 ```
