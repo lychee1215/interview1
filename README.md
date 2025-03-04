@@ -78,6 +78,17 @@ async function fetch(urls, limit) {
     return Promise.all(results);
 }
 
+import pLimit from 'p-limit';
+
+const limit = pLimit(2); // 设置并发限制为2
+
+const urls = ['url1', 'url2', 'url3', 'url4'];
+const promises = urls.map(url => limit(() => fetch(url).then(res => res.json())));
+
+Promise.all(promises).then(results => {
+    console.log(results);
+});
+
 // 使用示例
 const urls = ['url1', 'url2', 'url3', 'url4'];
 fetch(urls, 2).then(results => {
