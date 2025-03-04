@@ -57,7 +57,7 @@ var d = Array.from (new Set(c))
 
 并发请求控制
 ```js
-async function fetch(urls, limit) {
+async function fetchWithLimit(urls, limit) {
     const results = [];
     const executing = [];
 
@@ -78,6 +78,12 @@ async function fetch(urls, limit) {
     return Promise.all(results);
 }
 
+// 使用示例
+const urls = ['url1', 'url2', 'url3', 'url4'];
+fetchWithLimit(urls, 2).then(results => {
+    console.log(results);
+});
+
 import pLimit from 'p-limit';
 
 const limit = pLimit(2); // 设置并发限制为2
@@ -89,9 +95,4 @@ Promise.all(promises).then(results => {
     console.log(results);
 });
 
-// 使用示例
-const urls = ['url1', 'url2', 'url3', 'url4'];
-fetch(urls, 2).then(results => {
-    console.log(results);
-});
 ```
