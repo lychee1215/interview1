@@ -140,3 +140,54 @@ shouldComponentUpdate()
 render()
 getSnapshotBeforeUpdate()
 componentDidUpdate()
+
+```js
+auto
+import React from 'react';
+
+class AutocorrectTextarea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+    };
+    this.autocorrectMap = {
+      'teh': 'the',
+      'recieve': 'receive',
+      'adress': 'address',
+      // Add more autocorrections as needed
+    };
+  }
+
+  handleChange = (event) => {
+    const inputText = event.target.value;
+    const correctedText = this.autocorrect(inputText);
+    this.setState({ text: correctedText });
+  };
+
+  autocorrect(text) {
+    const words = text.split(' ');
+    const correctedWords = words.map((word) => {
+      return this.autocorrectMap[word] || word;
+    });
+    return correctedWords.join(' ');
+  }
+
+  render() {
+    return (
+      <div className="text-center">
+        <textarea
+          data-testid="textarea"
+          rows={10}
+          cols={80}
+          className="card"
+          value={this.state.text}
+          onChange={this.handleChange}
+        />
+      </div>
+    );
+  }
+}
+
+export default AutocorrectTextarea;
+```
