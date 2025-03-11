@@ -133,3 +133,10 @@ const FeedbackSystem = () => {
 
 export default FeedbackSystem;
 ```
+When a react component is re-rendered, which methods are called, and in what order?
+
+getDerivedStateFromProps()
+shouldComponentUpdate()
+render()
+getSnapshotBeforeUpdate()
+componentDidUpdate()
