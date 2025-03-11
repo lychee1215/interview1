@@ -40,20 +40,7 @@ const original = {
 const copied = deepClone(original);
 console.log(copied);
 ```
-合并数组
-```js
-a = [1, 5, 8]
-b = [3, 6, 9]
-// 1
-var c = a.concat(b)
-// 2
-for (let i in b){
-    a.push(b[i])
-}
-// 3
-a.push.apply(a,b)
 
-var d = Array.from (new Set(c))
 
 并发请求控制
 ```js
@@ -95,4 +82,54 @@ Promise.all(promises).then(results => {
     console.log(results);
 });
 
+```
+```js
+const FeedbackSystem = () => {
+
+  const subjects = ["Readability", "Performance", "Security", "Documentation", "Testing"];
+  const [votes, setVotes] = React.useState(subjects.map((s)=>({subject: s, upvotes: 0, downvotes: 0})));
+
+  const handleUpVote = (index) =>{
+    setVotes(prevState=>{
+      const newData = [...prevState];
+      newData[index].upvotes +=1;
+      return newData
+    })
+  }
+
+  const handleDownVote = (index) =>{
+    setVotes(prevState=>{
+      const newData = [...prevState];
+      newData[index].downvotes +=1;
+      return newData
+    })
+  }
+  return (
+    <div className="my-0 mx-auto text-center w-mx-1200">
+      <div className="flex wrap justify-content-center mt-30 gap-30">
+        {subjects.map((subject,index) =>(
+          <div key={subject} className="pa-10 w-300 card">
+          <h2>{subject}</h2>
+          <div className="flex my-30 mx-0 justify-content-around">
+            <button onClick={()=> handleUpVote(index)} className="py-10 px-15" data-testid={`upvote-btn-0-${subject}`}>
+              👍 Upvote
+            </button>
+            <button onClick={()=> handleDownVote(index)} className="py-10 px-15 danger" data-testid={`downvote-btn-0-${subject}`}>
+              👎 Downvote
+            </button>
+          </div>
+          <p className="my-10 mx-0" data-testid={`upvote-count-0-${subject}`}>
+            Upvotes: <strong>{votes[index].upvotes}</strong>
+          </p>
+          <p className="my-10 mx-0" data-testid={`downvote-count-0-${subject}`}>
+            Downvotes: <strong>{votes[index].downvotes}</strong>
+          </p>
+        </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FeedbackSystem;
 ```
