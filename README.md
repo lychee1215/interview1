@@ -185,10 +185,13 @@ JS questions
 
 Data structure questions
 - A linked list is a data structure that is used to store multiple items. The items are linked together using the key.
-- A BST is a data structure that maintains a sorted order of elements. That all values of left children are less than that of root and right children are larger than the root. It is kind of similar to binary search. The average time complexity to search and insert is O(logn)
+- A BST is a data structure that maintains a sorted order of elements. That all values of left children are less than that of root and right children are larger than the root. It is kind of similar to binary search. The average time complexity to search and insert is O(logn) (If you inorder a binary search tree that sorted array)
 - hashmap: key and value pair. O(1) to find if you have the key
-- Inorder traverse:
-```
+- Preorder traverse: root->left->right
+- Inorder traverse: left->root->right;
+- Postorder traverse: left->right->root
+
+```js
 var inorderTraversal = function(root) {
     let ans = []
     const inOrder = (node) => {
@@ -204,3 +207,56 @@ var inorderTraversal = function(root) {
 
 };
 ```
+反转链表2
+```js
+    let dummy = new ListNode(-1, head)
+    
+    let prev = dummy
+    let curr = head
+
+    for(let i = 0; i < left - 1; i++){
+        prev = curr
+        curr = curr.next
+    }
+
+    for (let i = 0; i < right - left; i++){
+        const temp = curr.next
+        curr.next = temp.next
+        temp.next = prev.next
+        prev.next = temp
+    } 
+    return dummy.next
+```
+
+```js
+function largestRectangle(h) {
+    const n = h.length;
+    let st = [];
+    let maxArea = 0;
+
+    for (let i = 0; i < n; i++) {
+        let height = h[i];
+        let start = i;
+        while (st.length > 0 && height < st[st.length - 1][0]) {
+            let [h, j] = st.pop();
+            let w = i - j;
+            let a = h * w;
+            maxArea = Math.max(maxArea, a);
+            start = j;
+        }
+        st.push([height, start]);
+    }
+
+    while (st.length > 0) {
+        let [h, j] = st.pop();
+        let w = n - j;
+        maxArea = Math.max(maxArea, h * w);
+    }
+
+    return maxArea;
+};
+```
+
+
+
+
