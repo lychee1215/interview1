@@ -178,3 +178,29 @@ const AutocorrectTextarea = () => {
 export default AutocorrectTextarea;
 
 ```
+JS questions
+- A callback is a function that will be executed after another function gets executed.
+- Constructor functions are used to create objects in JS
+
+
+Data structure questions
+- A linked list is a data structure that is used to store multiple items. The items are linked together using the key.
+- A BST is a data structure that maintains a sorted order of elements. That all values of left children are less than that of root and right children are larger than the root. It is kind of similar to binary search. The average time complexity to search and insert is O(logn)
+- hashmap: key and value pair. O(1) to find if you have the key
+- Inorder traverse:
+```
+var inorderTraversal = function(root) {
+    let ans = []
+    const inOrder = (node) => {
+        if(!node){
+            return
+        }
+        inOrder(node.left)
+        ans.push(node.val)
+        inOrder(node.right)
+    }
+    inOrder(root)
+    return ans
+
+};
+```
