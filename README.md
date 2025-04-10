@@ -256,8 +256,10 @@ function largestRectangle(h) {
     return maxArea;
 };
 ```
-```
+```js
 const array2D = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
 ```
-
+```js
+const target = [2, 3]
+const names = user.filter(user => target.includes(user.id)).map(user => user.name) 
 
