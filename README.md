@@ -256,7 +256,8 @@ function largestRectangle(h) {
     return maxArea;
 };
 ```
-
-
+```
+const array2D = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
+```
 
 
